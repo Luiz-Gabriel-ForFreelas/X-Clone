@@ -14,7 +14,7 @@ class Usuario extends Model {
         return $this->$atributo;
     }
 
-    public function __set($atributom, $valor) {
+    public function __set($atributo, $valor) {
         $this->$atributo = $valor;
     }
 
@@ -31,8 +31,29 @@ class Usuario extends Model {
     }
 
     //validar dados
+    public function validarCadastro() {
+        $valido = true;
+        if(strlen($this->__get('nome')) < 3) {
+            $valido = false;
+        }
+        if(strlen($this->__get('email')) < 3) {
+            $valido = false;
+        }
+        if(strlen($this->__get('senha')) < 3) {
+            $valido = false;
+        }
+
+        return $valido;
+    }
 
     //verificar se o email já está cadastrado
+    public function getUsuarioPorEmail() {
+        $query = "select nome, email from usuarios where email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':email', $this->__get('email'));
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 
 }
 
