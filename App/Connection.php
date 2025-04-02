@@ -6,7 +6,7 @@ class Connection {
     public static function getDb(){
         try {
             $conn = new \PDO(
-                "mysql:host=localhost;dbname=mvc;chatset=utf8",
+                "mysql:host=localhost;dbname=twitter_clone;chatset=utf8",
                 "root",
                 ""
             );

@@ -9,5 +9,19 @@ class IndexController extends Action {
     public function index() {
         $this->render('index');
     }
+
+    public function inscreverse() {
+        $this->render('inscreverse');
+    }
+
+    public function registrar() {
+        //receber os dados do form
+        print_r($_POST);
+
+        //sucesso
+
+
+        //erro
+    }
 }
 ?>
