@@ -13,6 +13,7 @@ class IndexController extends Action {
 
     public function inscreverse() {
         $this->view->erroCadastro = false;
+        $this->view->usuario = null;
         $this->render('inscreverse');
     }
 
@@ -21,7 +22,7 @@ class IndexController extends Action {
         $usuario = Container::getModel('Usuario');
         $usuario->__set('nome', $_POST['Nome']);
         $usuario->__set('email', $_POST['E-mail']);
-        $usuario->__set('senha', $_POST['Senha']);
+        $usuario->__set('senha', md5($_POST['Senha']));
 
         if($usuario->validarCadastro() && count($usuario->getUsuarioPorEmail()) == 0) {
             //sucesso

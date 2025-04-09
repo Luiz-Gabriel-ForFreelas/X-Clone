@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controllers;
-
 //Recursos
 use MF\Controller\Action;
 use MF\Model\Container;
@@ -9,7 +7,7 @@ use MF\Model\Container;
 class AuthController {
     public function autenticar() {
         $usuario = Container::getModel('Usuario');
-        $usuario->__set('senha', $_POST['Senha']);
+        $usuario->__set('senha', md5($_POST['Senha']));
         $usuario->__set('email', $_POST['E-mail']);
         
         $usuario->autenticar();
@@ -31,5 +29,4 @@ class AuthController {
         header('Location: /');
     }
 }
-
 ?>
